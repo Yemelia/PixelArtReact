@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { Input } from 'reactstrap';
 
 import LineParams from './LineParams';
+import RectangleParams from './RectangleParams';
 
 class ChartFigures extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      figure: 'line',
+      figure: 'rectangle',
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -33,13 +34,18 @@ class ChartFigures extends Component {
               name="figure"
             > 
               <option />
-              <option value="circule">Circle</option>
+              <option value="rectangle">Rectangle</option>
               <option value="line">Line</option>
             </Input>
           </div>
         </div>
         {figure === 'line' &&
           <LineParams
+            addFigure={this.props.addFigure}
+          />
+        }
+        {figure === 'rectangle' &&
+          <RectangleParams
             addFigure={this.props.addFigure}
           />
         }

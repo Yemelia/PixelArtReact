@@ -16,14 +16,43 @@ function drawLine(figure, indexX, indexY, index) {
   return false;
 }
 
+function drawRectangle(figure, indexX, indexY, index) {
+  if (figure.y1 === indexY) {
+    if (indexX >= figure.x1 && indexX <= figure.x2) {
+      return true;
+    }
+  }
+
+  if (indexY > figure.y1 && indexY < figure.y2) {
+    if (indexX === figure.x1) {
+      return true;
+    }
+  }
+
+  if (figure.y2 === indexY) {
+    if (indexX >= figure.x1 && indexX <= figure.x2) {
+      return true;
+    }
+  }
+
+  if (indexY > figure.y1 && indexY < figure.y2) {
+    if (indexX === figure.x2) {
+      return true;
+    }
+  }
+
+  return false;
+}
 
 export function isDraw(figures, indexX, indexY) {
   let isDraw = false;
 
-  figures.some(figure => {
+  isDraw = figures.some(figure => {
     if (figure.type === 'line') {
-      isDraw = drawLine(figure, indexX, indexY);
-      return isDraw;
+      return drawLine(figure, indexX, indexY);
+    }
+    if (figure.type === 'rectangle') {
+      return drawRectangle(figure, indexX, indexY);
     }
 
     return false;
