@@ -7,16 +7,30 @@ const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const initialState = {
   chart: {
-    x: 12,
-    y: 10,
+    x: 20,
+    y: 4,
   },
   figures: [
     {
       type: 'line',
       x1: 1,
-      x2: 5,
-      y1: 5,
-      y2: 5,
+      x2: 6,
+      y1: 2,
+      y2: 2
+    },
+    {
+      type: 'line',
+      x1: 6,
+      x2: 6,
+      y1: 3,
+      y2: 4
+    },
+    {
+      type: 'rectangle',
+      x1: 16,
+      x2: 20,
+      y1: 1,
+      y2: 3
     }
   ],
 };

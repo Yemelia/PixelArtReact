@@ -3,12 +3,13 @@ import { Input } from 'reactstrap';
 
 import LineParams from './LineParams';
 import RectangleParams from './RectangleParams';
+import BucketFillParams from './BucketFill';
 
 class ChartFigures extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      figure: 'rectangle',
+      figure: 'bucketFill',
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -26,7 +27,8 @@ class ChartFigures extends Component {
     console.log(this.props);
     return (
       <div className="chart-figures__container">
-        <div className="row">
+        <p>Add Figure:</p>
+        <div className="row mb-2">
           <div className="col-md-4">
             <Input
               type="select"
@@ -36,6 +38,7 @@ class ChartFigures extends Component {
               <option />
               <option value="rectangle">Rectangle</option>
               <option value="line">Line</option>
+              <option value="bucketFill">Bucket Fill</option>
             </Input>
           </div>
         </div>
@@ -46,6 +49,11 @@ class ChartFigures extends Component {
         }
         {figure === 'rectangle' &&
           <RectangleParams
+            addFigure={this.props.addFigure}
+          />
+        }
+        {figure === 'bucketFill' &&
+          <BucketFillParams
             addFigure={this.props.addFigure}
           />
         }

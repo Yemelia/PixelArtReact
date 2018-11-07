@@ -7,7 +7,7 @@ import './index.scss';
 
 const Header = () => (
   <Navbar className="header">
-    <a href="/">ASCII CHARTS</a>
+    <a href="/">PIXEL CHART</a>
   </Navbar>
 );
 

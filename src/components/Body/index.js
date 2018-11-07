@@ -7,9 +7,11 @@ import ChartFigures from '../../containers/ChartFigures/';
 const Body = () => {
   return (
     <div>
-      <ChartParams />
-      <ChartFigures />
-      <Chart />
+      <div className="container">
+        <ChartParams />
+        <ChartFigures />
+        <Chart />
+      </div>
     </div> 
   );
 };

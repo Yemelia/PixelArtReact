@@ -29,35 +29,36 @@ class ChartParams extends Component {
       height,
     } = this.state;
     return (
-      <div className="chart-params__container container">
+      <div className="chart-params__container mt-2">
+        <p>Canvas Params:</p>
         <div className="row">
           <FormGroup className="col-md-3">
-            <Label for="width">Width:</Label>
             <Input
               type="text"
               name="width"
               id="width"
               value={width}
               onChange={this.handleInputChange}
-              placeholder="table width"
+              placeholder="canvas width"
             />
           </FormGroup>
           <FormGroup className="col-md-3">
-            <Label for="height">Height:</Label>
             <Input
               type="text"
               name="height"
               id="height"
               value={height}
               onChange={this.handleInputChange}
-              placeholder="table height"
+              placeholder="canvas height"
             />
           </FormGroup>
-          <Button
-            onClick={this.setChartPrams}
-          >
-            Change
-          </Button>
+          <div className="col-md-4">
+            <Button
+              onClick={this.setChartPrams}
+            >
+              Change
+            </Button>
+          </div>
         </div>
       </div>
     );
