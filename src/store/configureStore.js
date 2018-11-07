@@ -7,9 +7,10 @@ const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const initialState = {
   chart: {
-    x: 0,
-    y: 0,
-  }
+    x: 12,
+    y: 10,
+  },
+  figures: [],
 };
 
 const store = createStore(

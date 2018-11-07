@@ -1,16 +1,9 @@
-import { SET_X, SET_Y } from '../actions';
+import { SET_PARAMS } from '../actions';
 
-const initalState = {
-  x: 0,
-  y: 0,
-};
-
-const reducer = (state = initalState, action) => {
+const reducer = (state = {}, action) => {
   switch (action.type) {
-    case SET_X:
-      return { x: action.coordinateX, y: state.y };
-    case SET_Y:
-      return { x: state.x, y: action.coordinateY };
+    case SET_PARAMS:
+      return { x: action.chart.x, y: action.chart.y };
     default:
       return state;
   }
