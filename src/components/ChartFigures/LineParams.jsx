@@ -18,7 +18,7 @@ class LineParams extends Component {
   handleInputChange(event) {
     const input = event.target;
 
-    this.setState({ [input.name]: input.value });
+    this.setState({ [input.name]: +input.value });
   }
 
   addFigure() {

@@ -3,6 +3,7 @@ import Chart from '../../components/Chart/';
 
 const mapStateToProps = state => ({
   chart: state.chart,
+  figures: state.figures,
 });
 
 const ChartContainer = connect(mapStateToProps)(Chart);

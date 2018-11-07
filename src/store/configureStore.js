@@ -10,7 +10,15 @@ const initialState = {
     x: 12,
     y: 10,
   },
-  figures: [],
+  figures: [
+    {
+      type: 'line',
+      x1: 1,
+      x2: 5,
+      y1: 5,
+      y2: 5,
+    }
+  ],
 };
 
 const store = createStore(
