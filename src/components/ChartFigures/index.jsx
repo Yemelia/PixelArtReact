@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Input } from 'reactstrap';
 
 import ByTwoParams from './InputsForCreate/ByTwoParams';
-import ByOneParams from './InputsForCreate/ByOneParams';
+import BucketFillParams from './InputsForCreate/BucketFillParams';
 
 class ChartFigures extends Component {
   constructor(props) {
@@ -33,6 +33,7 @@ class ChartFigures extends Component {
               type="select"
               onChange={this.handleInputChange}
               name="figureType"
+              disabled={!this.props.chart.x || !this.props.chart.y}
             > 
               <option />
               <option value="rectangle">Rectangle</option>
@@ -54,7 +55,7 @@ class ChartFigures extends Component {
           />
         }
         {figureType === 'bucketFill' &&
-          <ByOneParams
+          <BucketFillParams
             addFigure={this.props.addFigure}
             type={figureType}
           />

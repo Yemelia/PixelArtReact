@@ -26,10 +26,10 @@ class Chart extends Component {
           {matrix.map((row, indexY) => {
             if (indexY === 0) return;
             return (
-              <div className="row">
+              <div key={`row-${indexY}`} className="row">
                 {row.map((pixel, indexX) => {
                   if (indexX === 0) return;
-                  return <div className={`pixel ${pixel ? pixel === 1 ? 'red' : 'orange' : ''}`}></div>;
+                  return <div key={`pixel-${indexY}-${indexX}`} className="pixel" style={{ backgroundColor: pixel }}></div>;
                 })}
               </div>
             );

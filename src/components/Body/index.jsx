@@ -6,19 +6,23 @@ import ChartFigures from '../../containers/ChartFigures/ChartFiguresContainer';
 
 const Body = () => {
   return (
-    <div>
-      <div className="container">
-        <ChartParams />
-        <div className="row">
-          <div className="col-md-4">
-            <ChartFigures />
-          </div>
-          <div className="col-md-8">
-            <Chart />
+    <div className="container mt-5">
+      <div className="row">
+        <div className="col-md-4">
+          <div className="row">
+            <div className="col-md-12">
+              <ChartParams />
+            </div>
+            <div className="col-md-12">
+              <ChartFigures />
+            </div>
           </div>
         </div>
+        <div className="col-md-8">
+          <Chart />
+        </div>
       </div>
-    </div> 
+    </div>
   );
 };
  

@@ -5,6 +5,7 @@ import { addFigure } from './../../actions';
 
 const mapStateToProps = state => ({
   figures: state.figures,
+  chart: state.chart,
 });
 
 const mapDispatchToProps = dispatch => ({

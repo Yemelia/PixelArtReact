@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Input, Label, FormGroup, Button } from 'reactstrap';
+import { TwitterPicker } from 'react-color';
 
 class BucketFillParams extends Component {
   constructor(props) {
@@ -7,9 +8,11 @@ class BucketFillParams extends Component {
     this.state = {
       x: '',
       y: '',
+      color: 'FF6900',
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleChangePickerComplete = this.handleChangePickerComplete.bind(this);
     this.addFigure = this.addFigure.bind(this);
   }
 
@@ -19,10 +22,20 @@ class BucketFillParams extends Component {
     this.setState({ [input.name]: +input.value });
   }
 
+  handleChangePickerComplete (color) {
+    this.setState({ color: color.hex });
+  }
+
   addFigure() {
     this.props.addFigure({
       type: 'bucketFill',
       ...this.state
+    });
+
+    this.setState({
+      x: '',
+      y: '',
+      color: 'FF6900',
     });
   }
 
@@ -30,11 +43,12 @@ class BucketFillParams extends Component {
     const {
       x,
       y,
+      color,
     } = this.state;
     return (
       <div className="line-params__container container">
         <div className="row">
-          <div className="col-md-9">
+          <div className="col-md-12">
             <div className="row">
               <FormGroup className="col-md-6">
                 <Label for="x1">X:</Label>
@@ -58,9 +72,16 @@ class BucketFillParams extends Component {
                   placeholder="y"
                 />
               </FormGroup>
+              <FormGroup className="col-md-12">
+                <TwitterPicker
+                  color={color}
+                  onChangeComplete={this.handleChangePickerComplete}
+                />
+              </FormGroup>
               <div className="col-md-3">
                 <Button
                   onClick={this.addFigure}
+                  disabled={!x || !y}
                 >
                   Add Figure
                 </Button>

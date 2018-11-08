@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Label, FormGroup, Button } from 'reactstrap';
+import { Input, FormGroup, Button } from 'reactstrap';
 
 class ChartParams extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class ChartParams extends Component {
   }
 
   setChartPrams() {
-    this.props.setParams({ x: this.state.width, y: this.state.height });
+    this.props.setParams({ x: +this.state.width, y: +this.state.height });
   }
 
   render() {
@@ -30,33 +30,33 @@ class ChartParams extends Component {
     } = this.state;
     return (
       <div className="chart-params__container mt-2">
-        <p>Canvas Params:</p>
+        <p>Chart Canvas Params:</p>
         <div className="row">
-          <FormGroup className="col-md-3">
+          <FormGroup className="col-md-4">
             <Input
               type="text"
               name="width"
               id="width"
               value={width}
               onChange={this.handleInputChange}
-              placeholder="canvas width"
+              placeholder="Width"
             />
           </FormGroup>
-          <FormGroup className="col-md-3">
+          <FormGroup className="col-md-4">
             <Input
               type="text"
               name="height"
               id="height"
               value={height}
               onChange={this.handleInputChange}
-              placeholder="canvas height"
+              placeholder="Height"
             />
           </FormGroup>
           <div className="col-md-4">
             <Button
               onClick={this.setChartPrams}
             >
-              Change
+              Create
             </Button>
           </div>
         </div>

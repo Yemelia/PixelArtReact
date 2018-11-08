@@ -93,6 +93,7 @@ class LineParams extends Component {
               <div className="col-md-3">
                 <Button
                   onClick={this.addFigure}
+                  disabled={!x1 || !x2 || !y1 || !y2}
                 >
                   Add Figure
                 </Button>
