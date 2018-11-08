@@ -24,6 +24,7 @@ class LineParams extends Component {
   addFigure() {
     this.props.addFigure({
       type: this.props.type,
+      color: 'red',
       ...this.state
     });
     this.setState({

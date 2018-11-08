@@ -1,3 +1,6 @@
+import { min, max } from 'lodash';
+
+// Not perfect, need to refactor
 function generateLinesForRectangle(figure) {
   return [
     {
@@ -27,19 +30,30 @@ function generateLinesForRectangle(figure) {
   ];
 }
 
+function sortCoordinates(figure) {
+  if (figure.type === 'bucketFill') return figure;
 
-export function paintMatrix(figure, matrix) {
+  return {
+    ...figure,
+    x1: min([figure.x1, figure.x2]),
+    y1: min([figure.y1, figure.y2]),
+    x2: max([figure.x1, figure.x2]),
+    y2: max([figure.y1, figure.y2]),
+  };
+}
+
+
+export function paintMatrix(shape, matrix) {
   let drawedMatrix = matrix;
+  let figure = sortCoordinates(shape);
   if (figure.type === 'line') {
     drawedMatrix = drawLine(drawedMatrix, figure);
-  }
-  if (figure.type === 'rectangle') {
+  } else if (figure.type === 'rectangle') {
     const lines = generateLinesForRectangle(figure);
     lines.forEach(line => {
-      drawedMatrix = drawLine(drawedMatrix, line);
+      drawedMatrix = drawLine(drawedMatrix, { ...line, color: figure.color });
     });
-  }
-  if (figure.type === 'bucketFill') {
+  } else if (figure.type === 'bucketFill') {
     drawedMatrix = drawBucketFill(drawedMatrix, { x: figure.x, y: figure.y }, figure.color);
   }
   return drawedMatrix;
@@ -49,7 +63,7 @@ function drawLine(drawedMatrix, line) {
   let matrix = drawedMatrix;
   for (let i = line.x1; i <= line.x2; i++) {
     for (let k = line.y1; k <= line.y2; k++) {
-      matrix[k][i] = 'red';
+      matrix[k][i] = line.color;
     }
   }
 
