@@ -47,5 +47,29 @@ export function drawMatrix(figure, matrix) {
       }
     });
   }
+  if (figure.type === 'bucketFill') {
+    let currentPoint = { x: figure.x, y: figure.y };
+    drawedMatrix = drawBucketFill(drawedMatrix, currentPoint);
+  }
   return drawedMatrix;
+}
+
+function drawBucketFill(drawedMatrix, currentPoint, previousPoint = null) {
+  let matrix = drawedMatrix;
+  
+  if(checkPixel(matrix, currentPoint)){
+    matrix[currentPoint.y][currentPoint.x] = 1;
+    matrix = drawBucketFill(matrix, { x: currentPoint.x + 1, y: currentPoint.y });
+    matrix = drawBucketFill(matrix, { x: currentPoint.x - 1, y: currentPoint.y });
+    matrix = drawBucketFill(matrix, { x: currentPoint.x , y: currentPoint.y + 1 });
+    matrix = drawBucketFill(matrix, { x: currentPoint.x, y: currentPoint.y - 1 });
+  }
+
+  return matrix;
+}
+
+function checkPixel (drawedMatrix, currentPoint) {
+  return (currentPoint.x > 0 && currentPoint.x < drawedMatrix[0].length) &&
+          (currentPoint.y > 0 && currentPoint.y < drawedMatrix.length) &&
+          (drawedMatrix[currentPoint.y][currentPoint.x] !== 1);
 }
