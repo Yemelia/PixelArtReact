@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Chart from '../../containers/Chart/';
-import ChartParams from '../../containers/Chart/ChartParams.js';
-import ChartFigures from '../../containers/ChartFigures/';
+import Chart from '../../containers/Chart/ChartContainer';
+import ChartParams from '../../containers/Chart/ChartParamsContainer';
+import ChartFigures from '../../containers/ChartFigures/ChartFiguresContainer';
 
 const Body = () => {
   return (
