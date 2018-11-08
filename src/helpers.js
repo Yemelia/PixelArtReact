@@ -28,37 +28,39 @@ function generateLinesForRectangle(figure) {
 }
 
 
-export function drawMatrix(figure, matrix) {
+export function paintMatrix(figure, matrix) {
   let drawedMatrix = matrix;
   if (figure.type === 'line') {
-    for (let i = figure.x1; i <= figure.x2; i++) {
-      for (let k = figure.y1; k <= figure.y2; k++) {
-        drawedMatrix[k][i] = 1;
-      }
-    }
+    drawedMatrix = drawLine(drawedMatrix, figure);
   }
   if (figure.type === 'rectangle') {
     const lines = generateLinesForRectangle(figure);
     lines.forEach(line => {
-      for (let i = line.x1; i <= line.x2; i++) {
-        for (let k = line.y1; k <= line.y2; k++) {
-          drawedMatrix[k][i] = 1;
-        }
-      }
+      drawedMatrix = drawLine(drawedMatrix, line);
     });
   }
   if (figure.type === 'bucketFill') {
-    let currentPoint = { x: figure.x, y: figure.y };
-    drawedMatrix = drawBucketFill(drawedMatrix, currentPoint);
+    drawedMatrix = drawBucketFill(drawedMatrix, { x: figure.x, y: figure.y });
   }
   return drawedMatrix;
 }
 
-function drawBucketFill(drawedMatrix, currentPoint, previousPoint = null) {
+function drawLine(drawedMatrix, line) {
+  let matrix = drawedMatrix;
+  for (let i = line.x1; i <= line.x2; i++) {
+    for (let k = line.y1; k <= line.y2; k++) {
+      matrix[k][i] = 1;
+    }
+  }
+
+  return matrix;
+}
+
+function drawBucketFill(drawedMatrix, currentPoint) {
   let matrix = drawedMatrix;
   
-  if(checkPixel(matrix, currentPoint)){
-    matrix[currentPoint.y][currentPoint.x] = 1;
+  if(checkAvaliablePixel(matrix, currentPoint)){
+    matrix[currentPoint.y][currentPoint.x] = 2;
     matrix = drawBucketFill(matrix, { x: currentPoint.x + 1, y: currentPoint.y });
     matrix = drawBucketFill(matrix, { x: currentPoint.x - 1, y: currentPoint.y });
     matrix = drawBucketFill(matrix, { x: currentPoint.x , y: currentPoint.y + 1 });
@@ -68,8 +70,8 @@ function drawBucketFill(drawedMatrix, currentPoint, previousPoint = null) {
   return matrix;
 }
 
-function checkPixel (drawedMatrix, currentPoint) {
+function checkAvaliablePixel (drawedMatrix, currentPoint) {
   return (currentPoint.x > 0 && currentPoint.x < drawedMatrix[0].length) &&
           (currentPoint.y > 0 && currentPoint.y < drawedMatrix.length) &&
-          (drawedMatrix[currentPoint.y][currentPoint.x] !== 1);
+          (!drawedMatrix[currentPoint.y][currentPoint.x]);
 }

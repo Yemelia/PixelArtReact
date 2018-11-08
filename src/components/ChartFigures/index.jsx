@@ -9,7 +9,7 @@ class ChartFigures extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      figure: 'bucketFill',
+      figure: '',
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);

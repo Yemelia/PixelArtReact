@@ -3,37 +3,9 @@ import thunk from 'redux-thunk';
 
 import reducers from '../reducers';
 
-const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+import initialState from './initialState';
 
-const initialState = {
-  chart: {
-    x: 20,
-    y: 4,
-  },
-  figures: [
-    {
-      type: 'line',
-      x1: 1,
-      x2: 6,
-      y1: 2,
-      y2: 2
-    },
-    {
-      type: 'line',
-      x1: 6,
-      x2: 6,
-      y1: 3,
-      y2: 4
-    },
-    {
-      type: 'rectangle',
-      x1: 16,
-      x2: 20,
-      y1: 1,
-      y2: 3
-    }
-  ],
-};
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   reducers,

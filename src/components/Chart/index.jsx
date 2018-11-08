@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { times } from 'lodash';
 
-import { drawMatrix } from '../../helpers';
+import { paintMatrix } from '../../helpers';
 
 import './index.scss';
 
@@ -19,7 +18,7 @@ class Chart extends Component {
     const { x: widthX, y: widthY } = chart;
     let matrix = createArray(widthX + 1, widthY + 1);
     figures.forEach(figure => {
-      drawMatrix(figure, matrix);
+      paintMatrix(figure, matrix);
     });
     return (
       <div className="chart__container mt-4">
@@ -30,7 +29,7 @@ class Chart extends Component {
               <div className="row">
                 {row.map((pixel, indexX) => {
                   if (indexX === 0) return;
-                  return <div className={`pixel ${pixel ? 'drawed-pixel' : ''}`}></div>;
+                  return <div className={`pixel ${pixel ? pixel === 1 ? 'red' : 'orange' : ''}`}></div>;
                 })}
               </div>
             );
