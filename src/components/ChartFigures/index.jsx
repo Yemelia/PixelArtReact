@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { Input } from 'reactstrap';
 
-import LineParams from './LineParams';
-import RectangleParams from './RectangleParams';
-import BucketFillParams from './BucketFill';
+import ByTwoParams from './InputsForCreate/ByTwoParams';
+import ByOneParams from './InputsForCreate/ByOneParams';
 
 class ChartFigures extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      figure: '',
+      figureType: '',
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -22,18 +21,18 @@ class ChartFigures extends Component {
 
   render() {
     const {
-      figure,
+      figureType,
     } = this.state;
-    console.log(this.props);
+
     return (
       <div className="chart-figures__container">
         <p>Add Figure:</p>
         <div className="row mb-2">
-          <div className="col-md-4">
+          <div className="col-md-12">
             <Input
               type="select"
               onChange={this.handleInputChange}
-              name="figure"
+              name="figureType"
             > 
               <option />
               <option value="rectangle">Rectangle</option>
@@ -42,19 +41,22 @@ class ChartFigures extends Component {
             </Input>
           </div>
         </div>
-        {figure === 'line' &&
-          <LineParams
+        {figureType === 'line' &&
+          <ByTwoParams
             addFigure={this.props.addFigure}
+            type={figureType}
           />
         }
-        {figure === 'rectangle' &&
-          <RectangleParams
+        {figureType === 'rectangle' &&
+          <ByTwoParams
             addFigure={this.props.addFigure}
+            type={figureType}
           />
         }
-        {figure === 'bucketFill' &&
-          <BucketFillParams
+        {figureType === 'bucketFill' &&
+          <ByOneParams
             addFigure={this.props.addFigure}
+            type={figureType}
           />
         }
       </div>

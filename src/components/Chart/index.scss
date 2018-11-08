@@ -1,19 +1,12 @@
 .chart__container {
   background: #333;
-  height: 100vh;
+  height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.canvas {
-  /* Perfectly square */
-  // width: 120px;
-  // height: 120px;
-}
-
 .pixel {
-  /* We'll need 64 total pixels in our HTML */
   width: 30px;
   height: 30px;
   float: left;

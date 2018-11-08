@@ -9,8 +9,14 @@ const Body = () => {
     <div>
       <div className="container">
         <ChartParams />
-        <ChartFigures />
-        <Chart />
+        <div className="row">
+          <div className="col-md-4">
+            <ChartFigures />
+          </div>
+          <div className="col-md-8">
+            <Chart />
+          </div>
+        </div>
       </div>
     </div> 
   );

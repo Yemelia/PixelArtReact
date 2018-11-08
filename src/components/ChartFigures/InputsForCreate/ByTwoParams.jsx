@@ -6,8 +6,8 @@ class LineParams extends Component {
     super(props);
     this.state = {
       x1: '',
-      x2: '',
       y1: '',
+      x2: '',
       y2: '',
     };
 
@@ -23,8 +23,14 @@ class LineParams extends Component {
 
   addFigure() {
     this.props.addFigure({
-      type: 'line',
+      type: this.props.type,
       ...this.state
+    });
+    this.setState({
+      x1: '',
+      y1: '',
+      x2: '',
+      y2: '',
     });
   }
 
@@ -38,7 +44,7 @@ class LineParams extends Component {
     return (
       <div className="line-params__container container">
         <div className="row">
-          <div className="col-md-9">
+          <div className="col-md-12">
             <div className="row">
               <FormGroup className="col-md-6">
                 <Label for="x1">X1:</Label>
@@ -52,17 +58,6 @@ class LineParams extends Component {
                 />
               </FormGroup>
               <FormGroup className="col-md-6">
-                <Label for="x2">X2:</Label>
-                <Input
-                  type="text"
-                  name="x2"
-                  id="x2"
-                  value={x2}
-                  onChange={this.handleInputChange}
-                  placeholder="x2"
-                />
-              </FormGroup>
-              <FormGroup className="col-md-6">
                 <Label for="y1">Y1:</Label>
                 <Input
                   type="text"
@@ -71,6 +66,17 @@ class LineParams extends Component {
                   value={y1}
                   onChange={this.handleInputChange}
                   placeholder="y1"
+                />
+              </FormGroup>
+              <FormGroup className="col-md-6">
+                <Label for="x2">X2:</Label>
+                <Input
+                  type="text"
+                  name="x2"
+                  id="x2"
+                  value={x2}
+                  onChange={this.handleInputChange}
+                  placeholder="x2"
                 />
               </FormGroup>
               <FormGroup className="col-md-6">

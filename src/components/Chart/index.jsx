@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { paintMatrix } from '../../helpers';
+import { paintMatrix } from '../../helpers/paintMatrix';
 
 import './index.scss';
 
