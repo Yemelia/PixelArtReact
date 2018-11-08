@@ -54,7 +54,7 @@ export function paintMatrix(shape, matrix) {
       drawedMatrix = drawLine(drawedMatrix, { ...line, color: figure.color });
     });
   } else if (figure.type === 'bucketFill') {
-    drawedMatrix = drawBucketFill(drawedMatrix, { x: figure.x, y: figure.y }, figure.color);
+    drawedMatrix = drawBucketFill(drawedMatrix, { x: figure.x, y: figure.y }, figure.color, drawedMatrix[figure.y][figure.x]);
   }
   return drawedMatrix;
 }
@@ -71,23 +71,23 @@ function drawLine(drawedMatrix, line) {
 }
 
 // Recursive function for check neighboring pixels 
-function drawBucketFill(drawedMatrix, currentPoint, color) {
+function drawBucketFill(drawedMatrix, currentPoint, color, colorToReplace) {
   let matrix = drawedMatrix;
   
-  if(checkAvaliablePixel(matrix, currentPoint)){
+  if(checkAvaliablePixel(matrix, currentPoint, colorToReplace)){
     matrix[currentPoint.y][currentPoint.x] = color;
-    matrix = drawBucketFill(matrix, { x: currentPoint.x + 1, y: currentPoint.y }, color);
-    matrix = drawBucketFill(matrix, { x: currentPoint.x - 1, y: currentPoint.y }, color);
-    matrix = drawBucketFill(matrix, { x: currentPoint.x , y: currentPoint.y + 1 }, color);
-    matrix = drawBucketFill(matrix, { x: currentPoint.x, y: currentPoint.y - 1 }, color);
+    matrix = drawBucketFill(matrix, { x: currentPoint.x + 1, y: currentPoint.y }, color, colorToReplace);
+    matrix = drawBucketFill(matrix, { x: currentPoint.x - 1, y: currentPoint.y }, color, colorToReplace);
+    matrix = drawBucketFill(matrix, { x: currentPoint.x , y: currentPoint.y + 1 }, color, colorToReplace);
+    matrix = drawBucketFill(matrix, { x: currentPoint.x, y: currentPoint.y - 1 }, color, colorToReplace);
   }
 
   return matrix;
 }
 
 // Check that pixel in canvas area and not painted
-function checkAvaliablePixel (drawedMatrix, currentPoint) {
+function checkAvaliablePixel (drawedMatrix, currentPoint, colorToReplace) {
   return (currentPoint.x > 0 && currentPoint.x < drawedMatrix[0].length) &&
           (currentPoint.y > 0 && currentPoint.y < drawedMatrix.length) &&
-          (!drawedMatrix[currentPoint.y][currentPoint.x]);
+          (drawedMatrix[currentPoint.y][currentPoint.x] === colorToReplace);
 }
