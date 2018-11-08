@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import ChartParams from '../../components/Chart/ChartParams.js';
+import ChartParams from '../../components/Chart/ChartParams';
 
 import { setParams } from './../../actions';
 
