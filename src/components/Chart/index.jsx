@@ -18,7 +18,7 @@ class Chart extends Component {
     const { x: widthX, y: widthY } = chart;
     let matrix = createArray(widthX + 1, widthY + 1);
     figures.forEach(figure => {
-      paintMatrix(figure, matrix);
+      matrix = paintMatrix(figure, matrix);
     });
     return (
       <div className="chart__container mt-4">
